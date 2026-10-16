@@ -128,3 +128,22 @@ print(f"\n{target1} в топ-10: {'Да' if in_top1 else 'Нет'}")
 print(f"{target2} в топ-10: {'Да' if in_top2 else 'Нет'}")
 if not in_top1 or not in_top2:
     print("Не удалось подобрать комбинацию среди проверенных вариантов.")
+
+demo_target1 = "безделушка"
+demo_target2 = "комод"
+combination = find_combination(demo_target1, demo_target2)
+
+if combination is None:
+    print("Не удалось подобрать комбинацию среди проверенных вариантов.")
+else:
+    demo_pos, demo_neg, demo_results = combination
+    formula = " + ".join(demo_pos)
+    if demo_neg:
+        formula += (" - " if formula else "") + " - ".join(demo_neg)
+
+    print(f"Целевая пара: {demo_target1}, {demo_target2}")
+    print(f"Найденная комбинация: {formula}")
+    print("Топ-10 ближайших существительных:")
+    for rank, (word, score) in enumerate(demo_results, 1):
+        mark = " <--- ЦЕЛЬ" if word in (demo_target1, demo_target2) else ""
+        print(f"{rank:2d}. {word:15} ({score:.4f}){mark}")
