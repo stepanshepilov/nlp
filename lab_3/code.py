@@ -42,7 +42,7 @@ if len(predictions_by_position) != len(target_words):
     raise ValueError("Число масок должно совпадать с числом целевых слов.")
 
 results = []
-print(f"Единое предложение: {sentence}\n")
+print(f"Предложение: {sentence}\n")
 
 for position, (target, predictions) in enumerate(
     zip(target_words, predictions_by_position), start=1
